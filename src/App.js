@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header';
-import AddForm from './components/AddForm';
+import Header from './components/layout/Header';
+import AddForm from './components/layout/AddForm';
+import StudentContainer from './components/layout/StudentContainer';
 
 class App extends Component {
   state = {
     name: '',
     course: '',
     grade: '',
+    id: '',
     students: []
   }
   handleChange = event => {
@@ -19,15 +21,17 @@ class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, course, grade } = this.state;
+    let { name, course, grade, id, students } = this.state;
+    id = students.length + 1;
     const studentData = {
-      name, course, grade
+      name, course, grade, id
     }
     this.setState({ 
       students: [...this.state.students, studentData],
       name: '',
       course: '',
-      grade: ''
+      grade: '', 
+      id: ''
     });
   }
 
@@ -43,6 +47,7 @@ class App extends Component {
       <div className="container text-white lead">
         <Header/>
         <AddForm handleChange={this.handleChange} studentData={this.state} handleSubmit={this.handleSubmit} cancelClick={this.cancelClick}/>
+        <StudentContainer students={this.state.students}/>
       </div>
     );
   }
