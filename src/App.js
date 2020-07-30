@@ -35,19 +35,32 @@ class App extends Component {
     });
   }
 
-  cancelClick =() => {
+  cancelClick = () => {
     this.setState({ 
       name: '',
       grade: '',
       course: ''
-    })
+    });
   }
+
+  deleteStudent = id => {
+    console.log('student id to be deleted: ', id);
+    this.setState(prevState => {
+      const updatedStudentsList = prevState.students.filter(student => student.id !== id);
+      return {
+        students: updatedStudentsList
+      }
+    });
+  }
+
+
+
   render(){
     return (
       <div className="container text-white lead">
         <Header/>
         <AddForm handleChange={this.handleChange} studentData={this.state} handleSubmit={this.handleSubmit} cancelClick={this.cancelClick}/>
-        <StudentContainer students={this.state.students}/>
+        <StudentContainer students={this.state.students} deleteStudent={this.deleteStudent}/>
       </div>
     );
   }
