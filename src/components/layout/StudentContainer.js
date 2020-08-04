@@ -11,6 +11,8 @@ const StudentContainer = ({ students, deleteStudent }) => {
                         <th scope="col">Student Name</th>
                         <th scope="col">Student Course</th>
                         <th scope="col">Student Grade</th>
+                        <th scope="col"> </th>
+                        <th scope="col"> </th>
                     </tr>
                 </thead>
                 <tbody>
